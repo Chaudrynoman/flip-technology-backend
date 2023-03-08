@@ -1,0 +1,1004 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+      "title": "Flip Technology Server",
+      "description": "This is a Flip Technology server and it's api documentation is described below",
+      "license": {
+        "name": "Flip Technology",
+        "url": "https://opensource.org/licenses/MIT"
+      },
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:8080/"
+      }
+    ],
+    "tags": [
+      {
+        "name": "User",
+        "description": "Register and Login Page"
+      },
+      {
+        "name": "Admin",
+        "description": "Admin APIs"
+      },
+      {
+        "name": "Home",
+        "description": "Landing Page"
+      }
+    ],
+    "paths": {
+      "/home": {
+        "get": {
+          "summary": "Landing Page",
+          "tags": [
+            "Home"
+          ],
+          "responses": {
+            "200": {
+              "description": "Server is running"
+            }
+          }
+        }
+      },
+      "/register": {
+        "post": {
+          "summary": "Register users in system",
+          "tags": [
+            "User"
+          ],
+          "description": "Register new user in system",
+          "requestBody": {
+            "description": "User that we want to Register",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/registerSchema"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "User register successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/registerResponse"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errorResponse"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errorResponse"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errorResponse"
+                  }
+                }
+              }
+            }
+          },
+          "x-codegen-request-body-name": "user"
+        }
+      },
+      "/login": {
+        "post": {
+          "summary": "User login",
+          "tags": [
+            "User"
+          ],
+          "description": "User login",
+          "requestBody": {
+            "description": "User that we want to login",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loginSchema"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "User login successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/suceessResponse"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errorResponse"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errorResponse"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errorResponse"
+                  }
+                }
+              }
+            }
+          },
+          "x-codegen-request-body-name": "user"
+        }
+      },
+      "/profile": {
+        "get": {
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "summary": "User Profile",
+          "tags": [
+            "User"
+          ],
+          "description": "User Profile",
+          "responses": {
+            "200": {
+              "description": "User get profile successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/profileResponse"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errorResponse"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errorResponse"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errorResponse"
+                  }
+                }
+              }
+            }
+          },
+          "x-codegen-request-body-name": "user"
+        }
+      },
+      "/assign/teachers": {
+        "post": {
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "summary": "Get all teachers",
+          "tags": [
+            "Admin"
+          ],
+          "requestBody": {
+            "description": "User that we want to login",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/teacherAsign"
+                }
+              }
+            },
+            "required": true
+          },
+          "description": "Get all teachers",
+          "responses": {
+            "200": {
+              "description": "Get Teachers successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/profileResponse"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errorResponse"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errorResponse"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errorResponse"
+                  }
+                }
+              }
+            }
+          },
+          "x-codegen-request-body-name": "admin"
+        }
+      },
+      "/assign/subject": {
+        "post": {
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "summary": "Get all teachers",
+          "tags": [
+            "Admin"
+          ],
+          "requestBody": {
+            "description": "User that we want to login",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/subjectAsign"
+                }
+              }
+            },
+            "required": true
+          },
+          "description": "Get all teachers",
+          "responses": {
+            "200": {
+              "description": "Get Teachers successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/profileResponse"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errorResponse"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errorResponse"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errorResponse"
+                  }
+                }
+              }
+            }
+          },
+          "x-codegen-request-body-name": "admin"
+        }
+      },
+      "/subject": {
+        "post": {
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "summary": "Get all teachers",
+          "tags": [
+            "Subject"
+          ],
+          "requestBody": {
+            "description": "User that we want to login",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/subjectSchema"
+                }
+              }
+            },
+            "required": true
+          },
+          "description": "Get all teachers",
+          "responses": {
+            "200": {
+              "description": "Get Teachers successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/profileResponse"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errorResponse"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errorResponse"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errorResponse"
+                  }
+                }
+              }
+            }
+          },
+          "x-codegen-request-body-name": "admin"
+        },
+        "get": {
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "summary": "Get all teachers",
+          "tags": [
+            "Subject"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "query",
+              "description": "SubjectID",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "description": "Get all teachers",
+          "responses": {
+            "200": {
+              "description": "Get Teachers successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/profileResponse"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errorResponse"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errorResponse"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errorResponse"
+                  }
+                }
+              }
+            }
+          },
+          "x-codegen-request-body-name": "admin"
+        }
+      },
+      "/teacher": {
+        "get": {
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "summary": "Get all teachers",
+          "tags": [
+            "Teacher"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "query",
+              "description": "TeacherID",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "description": "Get all teachers",
+          "responses": {
+            "200": {
+              "description": "Get Teachers successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/profileResponse"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errorResponse"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errorResponse"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errorResponse"
+                  }
+                }
+              }
+            }
+          },
+          "x-codegen-request-body-name": "admin"
+        }
+      },
+      "/video": {
+        "post": {
+          "tags": [
+            "Teacher"
+          ],
+          "summary": "add video",
+          "description": "add video",
+          "requestBody": {
+            "description": "to add video",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/setvideo"
+                }
+              }
+            },
+            "required": true
+          },
+          "parameters": [
+            {
+              "name": "subjectID",
+              "in": "query",
+              "description": "subjectID",
+              "schema": {
+                "type": "string"
+              },
+              "required": "true"
+            },
+            {
+              "name": "weekNo",
+              "in": "query",
+              "description": "weekNo",
+              "schema": {
+                "type": "number"
+              },
+              "required": "true"
+            },
+            {
+              "name": "chapter",
+              "in": "query",
+              "description": "chapter",
+              "schema": {
+                "type": "string"
+              },
+              "required": "true"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object"
+                      },
+                      "msg":{
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Bad Request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errorResponse"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errorResponse"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errorResponse"
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ]
+        },
+        "get": {
+          "tags": [
+            "Student"
+          ],
+          "summary": "get videos",
+          "description": "get videos",
+          "parameters": [
+            {
+              "name": "teacherID",
+              "in": "query",
+              "description": "subjectID",
+              "schema": {
+                "type": "string"
+              },
+              "required": "true"
+            },
+            {
+              "name": "weekNo",
+              "in": "query",
+              "description": "weekNo",
+              "schema": {
+                "type": "number"
+              },
+              "required": "true"
+            },
+            {
+              "name": "chapter",
+              "in": "query",
+              "description": "chapter",
+              "schema": {
+                "type": "string"
+              },
+              "required": "true"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                          "$ref": "#/components/schemas/setvideo"
+                      },
+                      "msg":{
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Bad Request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errorResponse"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errorResponse"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errorResponse"
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ]
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "registerSchema": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            },
+            "role": {
+              "type": "string",
+              "enum": [
+                "user",
+                "teacher",
+                "admin"
+              ]
+            }
+          }
+        },
+        "subjectSchema": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "code": {
+              "type": "string"
+            },
+            "weeks": {
+              "type": "array",
+              "enum": [
+                "1",
+                "2",
+                "3"
+              ],
+                "items": {
+                  "properties": {
+                    "weekNo":{
+                      "type": "string"
+                    },
+                    "topicName": {
+                      "type": "string",
+                        "enum": [
+                          "Derivatives",
+                          "Limits",
+                          "Chain Rule",
+                          "Integral"
+                        ]
+                      }
+                  }
+                }
+            }
+          }
+        },
+        "setvideo": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string"
+            },
+            "duration": {
+              "type": "array",
+              "items": {
+                "properties": {
+                  "topicName":{
+                    "type": "string",
+                    "example" : "10:30"
+                  },
+                  "startTime":{
+                    "type": "string",
+                    "example" : "10:30"
+                  },
+                  "endTime": {
+                    "type":"string",
+                    "example" : "11:30"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "loginSchema": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            }
+          }
+        },
+        "subjectAsign": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "subjName": {
+              "type": "string"
+            },
+            "subjCode": {
+              "type": "string"
+            }
+          }
+        },
+        "teacherAsign": {
+          "type": "object",
+          "properties": {
+            "teacherID": {
+              "type": "string"
+            },
+            "studentID": {
+              "type": "string"
+            }
+          }
+        },
+        "errorResponse": {
+          "type": "object",
+          "properties": {
+            "suceess": {
+              "type": "boolean",
+              "default": false
+            },
+            "msg": {
+              "type": "string"
+            },
+            "data": {
+              "type": "object"
+            }
+          }
+        },
+        "suceessResponse": {
+          "type": "object",
+          "properties": {
+            "suceess": {
+              "type": "boolean",
+              "default": "true"
+            },
+            "msg": {
+              "type": "string"
+            },
+            "data": {
+              "type": "object",
+              "properties": {
+                "token": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "registerResponse": {
+          "type": "object",
+          "properties": {
+            "suceess": {
+              "type": "boolean",
+              "default": "true"
+            },
+            "msg": {
+              "type": "string"
+            },
+            "data": {
+              "type": "object",
+              "properties": {
+              }
+            }
+          }
+        },
+        "profileResponse": {
+          "type": "object",
+          "properties": {
+            "suceess": {
+              "type": "boolean",
+              "default": "true"
+            },
+            "msg": {
+              "type": "string"
+            },
+            "data": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "role": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        
+        "usersResponse": {
+          "type": "object",
+          "properties": {
+            "suceess": {
+              "type": "boolean",
+              "default": "true"
+            },
+            "msg": {
+              "type": "string"
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "_id": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "role": {
+                    "type": "string"
+                  }
+              }
+            }
+          }
+        }
+      }
+      },
+      "securitySchemes": {
+        "bearerAuth": {
+          "type": "http",
+          "description": "JWT Authorization header using the Bearer scheme.",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
+      }
+    }
+  }

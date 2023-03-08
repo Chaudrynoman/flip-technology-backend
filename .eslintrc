@@ -1,0 +1,16 @@
+{
+    "extends": "standard",
+    "globals": {
+      "__root": "writable",
+      "__base": "writable",
+      "__config": "writable",
+      "__controllers": "writable",
+      "__middlewares": "writable",
+      "__routes": "writable",
+      "__models": "writable",
+      "__utils": "writable",
+      "__thirdParty": "writable",
+      "io": "writable"
+    }
+  }
+  
