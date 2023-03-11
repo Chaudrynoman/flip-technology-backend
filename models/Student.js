@@ -9,7 +9,7 @@ const studentSchema = new Schema({
 //   },
   user_id: {
     type: String,
-    required: true
+    ref: 'User'
   },
   sec_id: {
     type: String,

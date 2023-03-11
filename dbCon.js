@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const config = require('./config/config')
-const dbURI = config.data_base_url || 'mongodb://localhost/simpledb'
+const dbURI = config.data_base_url || 'mongodb://localhost/testttsa'
 mongoose.set("strictQuery", false);
 const connectWithRetry = () => {
   return mongoose.connect(dbURI, (e) => {

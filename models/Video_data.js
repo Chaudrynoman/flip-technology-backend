@@ -3,10 +3,10 @@ const mongoose = require('mongoose');
 // mongoose.connect('mongodb://localhost/Flip_fyp');
 
 // define a schema for the Student table
-const studentSchema = new mongoose.Schema({
+const videosSchema = new mongoose.Schema({
   s_id: {
     type: String,
-    required: true
+    ref: 'Student'
   },
   user_id: {
     type: String,
@@ -16,4 +16,5 @@ const studentSchema = new mongoose.Schema({
 });
 
 // create a Mongoose model for the Student table using the schema
-const Student = mongoose.model('Student', studentSchema);
+const Student = mongoose.model('Video_data', videosSchema);
+module.exports = Student;
