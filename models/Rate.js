@@ -4,6 +4,7 @@ const rateSchema = new mongoose.Schema({
   s_id: {
     type: String,
     required: true,
+    ref: 'Student'
   },
   rate: {
     type: Number,
@@ -12,6 +13,7 @@ const rateSchema = new mongoose.Schema({
   v_data_id: {
     type: String,
     required: true,
+    ref: 'Video_data'
   },
   session: {
     type: String,

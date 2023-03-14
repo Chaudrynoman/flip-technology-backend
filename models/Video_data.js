@@ -4,14 +4,10 @@ const mongoose = require('mongoose');
 
 // define a schema for the Student table
 const videosSchema = new mongoose.Schema({
-  s_id: {
-    type: String,
-    ref: 'Student'
-  },
-  user_id: {
-    type: String,
-    required: true
-  },
+    v_id: { type: String, ref: 'Videos' },
+  topic_id: { type: String, ref: 'List_Topic' },
+  start_time: { type: String },
+  end_time: { type: String },
   sec_id: String
 });
 

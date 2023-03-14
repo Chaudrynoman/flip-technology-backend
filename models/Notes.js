@@ -4,6 +4,7 @@ const notesSchema = new mongoose.Schema({
   s_id: {
     type: String,
     required: true,
+    ref: 'Student'
   },
   v_data_id: {
     type: String,

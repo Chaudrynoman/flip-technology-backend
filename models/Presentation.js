@@ -4,6 +4,7 @@ const presentationSchema = new mongoose.Schema({
   s_id: {
     type: String,
     required: true,
+    ref: 'Student'
   },
   topic_id: {
     type: String,
@@ -20,6 +21,7 @@ const presentationSchema = new mongoose.Schema({
   t_id: {
     type: String,
     required: true,
+    ref: 'Teacher'
   },
   marks: {
     type: Number,
